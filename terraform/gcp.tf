@@ -3,7 +3,7 @@ resource "google_compute_instance" "default" {
   name         = "test1"
   machine_type = "n1-standard-1"
   zone         = "us-west1-b"
-  tags         = ["ssh", "http", "http-server"]
+  tags         = ["ssh", "http", "all", "http-server"]
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-bionic-v20200317"
@@ -26,7 +26,7 @@ resource "google_compute_instance" "default1" {
   name         = "test"
   machine_type = "n1-standard-1"
   zone         = "us-west1-b"
-  tags         = ["ssh", "http", "http-server"]
+  tags         = ["ssh", "http", "all", "http-server"]
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-bionic-v20200317"
