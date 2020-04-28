@@ -8,6 +8,6 @@ scrape_configs:
           - targets: ['prometheus:9090']
     - job_name: 'node-exporter'
       target_groups:
-          - targets: ['node-exporter:9100']
+          - targets: ['3.21.186.27:9100']
       rule_files:
               - 'alert.rules'
