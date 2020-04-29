@@ -5,11 +5,7 @@ global:
   # scrape_timeout is set to the global default (10s).
 
 # Alertmanager configuration
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets:
-      - 35.230.82.224:9093
+
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -17,15 +13,28 @@ rule_files:
   # - "second_rules.yml"
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'prometheus-stack-monitor'
+
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
   - job_name: 'prometheus'
 
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
+    scrape_interval: 10s
+    scrape_timeout: 5s
 
     static_configs:
-    - targets: ['localhost:9090']
+      - targets: ['localhost:9090']
+      
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 35.230.82.224:9093
 
 
   - job_name: 'node_exporter'
