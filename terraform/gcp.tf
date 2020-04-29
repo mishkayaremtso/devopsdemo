@@ -70,5 +70,5 @@ resource "google_compute_instance" "default2" {
 
   }
 
-  metadata_startup_script = "sudo apt update && sudo apt install -y openjdk-8-jre && sudo ufw allow 8080 && sudo ufw allow ssh && sudo ufw allow http && sudo ufw enable "
+  metadata_startup_script = "sudo apt update && sudo apt install -y openjdk-8-jre && sudo ufw allow 8080 && sudo ufw allow ssh && sudo ufw allow http && sudo ufw enable && sudo apt install -y docker.io  "
 }
