@@ -29,6 +29,6 @@ scrape_configs:
     - targets: ['localhost:9090']
 
 
-  - job_name: 'node_exporter'
+  - job_name: 'node'
     static_configs:
-    - targets: ['http://35.230.82.224:9100','http://terraform-asg-example-1562246850.us-west-2.elb.amazonaws.com:9100','http://3.21.186.27:9100']
+    - targets: ['35.230.82.224:9100','http://terraform-asg-example-1562246850.us-west-2.elb.amazonaws.com:9100','3.21.186.27:9100']
