@@ -2,7 +2,7 @@
 version: '3'
 services:
     prometheus:
-        image: prom/prometheus
+        image: prom/prometheus:0.18.0
         volumes:
             - prometheus_data:/prometheus
         command:
