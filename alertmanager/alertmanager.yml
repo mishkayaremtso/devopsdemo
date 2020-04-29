@@ -1,9 +1,30 @@
+#global:
+
 route:
-    receiver: 'slack'
+  group_by: ['alertname', 'job']
+  group_wait: 30s
+  group_interval: 60s
+  repeat_interval: 1h
+  receiver: 'null'
+
+  routes:
+  - receiver: email-me
+    repeat_interval: 1h
+    match_re:
+      job: node_exporter
+
 receivers:
-    - name: 'slack'
-      slack_configs:
-          - send_resolved: true
-            username: 'Prometheus'
-            channel: '#demo'
-            api_url: 'https://hooks.slack.com/services/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'
+
+- name: email-me
+  email_configs:
+  - to: vasulrgdevera@gmail.com
+    require_tls: false
+    from: team3crashcourse@gmail.com
+    smarthost: smtp.gmail.com:465
+    auth_username: "team3crashcourse"
+    auth_identity: "team3crashcourse"
+    auth_password: "prometheus22"
+
+- name: "null"
+- name: regular_alert_receiver
+    <snip>
