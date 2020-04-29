@@ -1,7 +1,8 @@
-version: '2'
+
+version: '3'
 services:
     prometheus:
-        image: prom/prometheus:0.18.0
+        image: prom/prometheus
         volumes:
             - prometheus_data:/prometheus
         command:
@@ -10,11 +11,11 @@ services:
         ports:
             - '9090:9090'
     node-exporter:
-        image: prom/node-exporter:v0.13.0
+        image: prom/node-exporter
         ports:
             - '9100:9100'
     grafana:
-            image: grafana/grafana:3.0.0-beta7
+            image: grafana/grafana
             environment:
                 - GF_SECURITY_ADMIN_PASSWORD=pass
             depends_on:
@@ -26,7 +27,8 @@ services:
         command:
             - '-config.file=/alertmanager.yml'
         ports:
-            - "4000:4000"
+            - "9093:9093"
+
 
 volumes:
     prometheus_data: {}
