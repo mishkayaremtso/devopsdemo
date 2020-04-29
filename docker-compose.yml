@@ -6,7 +6,7 @@ services:
         volumes:
             - prometheus_data:/prometheus
         command:
-        - '-config.file=/etc/prometheus/prometheus.yml'
+        - '-config.file=/prometheus.yml'
         - '-alertmanager.url=http://alertmanager:9093'
         ports:
             - '9090:9090'
