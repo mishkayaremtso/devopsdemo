@@ -5,7 +5,7 @@ services:
         image: prom/prometheus
         volumes:
         - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-        - ./prometheus/alert.rules:/etc/prometheus/alert.rules
+        - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
         ports:
             - '9090:9090'
     node-exporter:
