@@ -20,7 +20,7 @@ services:
       - alertmanager:alertmanager
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+      - ./prometheus/alert.rules:/etc/prometheus/alert.rules
 
   grafana-ui:
     image: grafana/grafana
