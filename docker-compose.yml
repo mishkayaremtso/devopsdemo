@@ -21,6 +21,7 @@ services:
             ports:
                 - "3000:3000"
     alertmanager:
+        image: prom/alertmanager
         volumes:
            - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
         command:
