@@ -1,13 +1,34 @@
+# my global config
 global:
-    scrape_interval: 5s
-    external_labels:
-        monitor: 'my-monitor'
+  scrape_interval:     30s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 35s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 35.230.82.224:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "alert.rules"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
 scrape_configs:
-    - job_name: 'prometheus'
-      target_groups:
-          - targets: ['prometheus:9090']
-    - job_name: 'node-exporter'
-      target_groups:
-          - targets: ['node-exporter:9100']
-      rule_files:
-              - 'alert.rules'
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+    - targets: ['localhost:9090']
+
+
+  - job_name: 'node_exporter'
+    static_configs:
+    - targets: ['localhost:9100','http://terraform-asg-example-1562246850.us-west-2.elb.amazonaws.com:9100','second_server:9100']
