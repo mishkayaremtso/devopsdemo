@@ -44,20 +44,3 @@ services:
     volumes:
       - "./prometheus/blackbox.yml:/config"
     command: -config.file=/config/blackbox.yml
-    
-  telegram-bot:
-    image: metalmatze/alertmanager-bot:0.4.0
-    environment:
-      ALERTMANAGER_URL: http://prometheus-alertmanager:9093
-      BOLT_PATH: /data/bot.db
-      STORE: bolt
-      TELEGRAM_ADMIN: 42356434523
-      TELEGRAM_TOKEN: 1206294097:AAEdYbh1HBZIrCYKGJF0dpZG8moEsr67Dcs
-      TEMPLATE_PATHS: /templates/default.tmpl
-      LISTEN_ADDR: 0.0.0.0:8080
-    volumes:
-      - "./prometheus/alertmanager_bot/data:/data"
-      - "./prometheus/alertmanager_bot/conf/telegram.tmpl:/templates/default.tmpl"
-    networks:
-      - prometheus-network
-    restart: always
