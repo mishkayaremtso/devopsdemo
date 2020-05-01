@@ -16,7 +16,7 @@ services:
       - prometheus-network
       
       
-  alertmanager:
+  prometheus-alertmanager:
     image: prom/alertmanager
     container_name: prometheus-alertmanager
     depends_on:
