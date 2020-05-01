@@ -3,6 +3,20 @@ version: '3'
 
 services:
 
+  prometheus-server:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    links:
+      - alertmanager:alertmanager
+      - blackbox_exporter
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    networks:
+      - prometheus-network
+      
+      
   alertmanager:
     image: prom/alertmanager
     container_name: prometheus-alertmanager
@@ -17,20 +31,7 @@ services:
     restart: always
     command:
       - --config.file=/etc/alertmanager/config.yml
-      - --storage.path=/alertmanager
-
-  prometheus-server:
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    links:
-      - alertmanager:alertmanager
-      - blackbox_exporter
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
-    networks:
-      - prometheus-network
+      - --storage.path=/alertmanager    
 
   grafana-ui:
     image: grafana/grafana
