@@ -2,7 +2,7 @@ route:
   receiver: 'alertmananger-bot'
   group_wait: 30s
   group_interval: 30s
-  repeat_interval: 60s
+  repeat_interval: 5h
   group_by: ['instance']
 
 receivers:
