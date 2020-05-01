@@ -7,7 +7,7 @@ services:
     image: prom/alertmanager
     container_name: prometheus-alertmanager
     depends_on:
-      - prometheus-server
+      - "prometheus-server"
 #        ports:
 #            - 127.0.0.1:9093:9093
     volumes:
