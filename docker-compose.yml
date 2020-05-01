@@ -5,14 +5,19 @@ services:
 
   alertmanager:
     image: prom/alertmanager
+    container_name: prometheus-alertmanager
+    depends_on:
+      - prometheus
+#        ports:
+#            - 127.0.0.1:9093:9093
     volumes:
-      - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
+      - ./alertmanager/:/etc/alertmanager/
     networks:
       - prometheus-network
+    restart: always
     command:
-      - '--config.file=/etc/prometheus/alertmanager.yml'
-    ports:
-      - 9093:9093
+      - --config.file=/etc/alertmanager/config.yml
+      - --storage.path=/alertmanager
 
   prometheus-server:
     image: prom/prometheus
