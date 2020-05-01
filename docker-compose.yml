@@ -21,8 +21,8 @@ services:
     container_name: prometheus-alertmanager
     ports:
       - 9093:9093
-    depends_on:
-      - "prometheus-server"
+#    depends_on:
+#      - "prometheus-server"
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     networks:
