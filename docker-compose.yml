@@ -72,6 +72,5 @@ services:
       - prometheus-network
     restart: always
   
-  
   networks:
-  prometheus-network:
+    prometheus-network:
