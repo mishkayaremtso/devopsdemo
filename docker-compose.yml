@@ -18,6 +18,7 @@ services:
       - 9090:9090
     links:
       - alertmanager:alertmanager
+      - blackbox_exporter
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
@@ -30,3 +31,17 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=secret
     links:
       - prometheus-server:prometheus
+    volumes:
+      - ./grafana-alertmanager/:/var/lib/grafana/plugins
+
+  blackbox_exporter:
+    image: prom/blackbox-exporter
+    ports:
+      - "9115:9115"
+    dns: 8.8.8.8
+    restart: always
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./prometheus/blackbox.yml:/config"
+    command: -config.file=/config/blackbox.yml
