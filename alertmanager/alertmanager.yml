@@ -10,8 +10,6 @@ route:
   routes:
   - receiver: 'alertmananger-bot'
     repeat_interval: 60s
-    match_re:
-      job: blackbox
 
 receivers:
 
