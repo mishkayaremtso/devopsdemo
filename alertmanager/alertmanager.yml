@@ -8,7 +8,7 @@ route:
   receiver: 'null'
 
   routes:
-  - receiver: 'alertmananger-bot'
+  - receiver: email-me
     repeat_interval: 60s
 
 receivers:
@@ -16,11 +16,10 @@ receivers:
 - name: email-me
   email_configs:
   - to: vasulrgdevera@gmail.com
-    require_tls: false
     from: team3crashcourse@gmail.com
     smarthost: smtp.gmail.com:465
     auth_username: "team3crashcourse"
-    auth_identity: "team3crashcourse"
+    auth_identity: "team3crashcourse@gmail.com"
     auth_password: "prometheus22"
 
 - name: 'alertmananger-bot'
