@@ -24,6 +24,8 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    networks:
+      - prometheus-network
 
   grafana-ui:
     image: grafana/grafana
@@ -33,6 +35,8 @@ services:
       - prometheus-server:prometheus
     volumes:
       - ./camptocamp-prometheus-alertmanager-datasource:/var/lib/grafana/plugins/
+    networks:
+      - prometheus-network
 
 
   blackbox_exporter:
@@ -45,6 +49,8 @@ services:
       - "9115:9115"
     volumes:
       - "./prometheus/blackbox.yml:/config"
+    networks:
+      - prometheus-network
     command: -config.file=/config/blackbox.yml
 
 
