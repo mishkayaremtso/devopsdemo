@@ -7,6 +7,8 @@ services:
     image: prom/alertmanager
     volumes:
       - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
+    networks:
+      - prometheus-network
     command:
       - '--config.file=/etc/prometheus/alertmanager.yml'
     ports:
