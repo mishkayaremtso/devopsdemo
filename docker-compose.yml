@@ -48,7 +48,7 @@ services:
   alertmanager-bot:
     image: metalmatze/alertmanager-bot:0.4.2
     environment:
-      ALERTMANAGER_URL: http://alertmanager:9093
+      ALERTMANAGER_URL: http://35.230.82.224:9093
       BOLT_PATH: /data/bot.db
       STORE: bolt
       TELEGRAM_ADMIN: '1234567'
