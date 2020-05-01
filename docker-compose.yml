@@ -23,7 +23,9 @@ services:
     command:
       - '--config.file=/etc/prometheus/alertmanager.yml'
     ports:
-      - 9093:9093  
+      - 9093:9093 
+    networks:
+      - prometheus-network
    
 
   grafana-ui:
