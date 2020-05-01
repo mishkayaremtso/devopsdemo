@@ -25,7 +25,7 @@ receivers:
 - name: 'alertmananger-bot'
   webhook_configs:
   - send_resolved: true
-    url: 'http://web.telegram.org/#/im?p=@devopsalertnotifbot:8080'
+    url: 'http://0.0.0.0:8080'
 
 - name: "null"
 - name: regular_alert_receiver
