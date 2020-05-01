@@ -18,6 +18,7 @@ services:
       
   alertmanager:
     image: prom/alertmanager
+    container_name: prometheus-alertmanager
     volumes:
       - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
     command:
