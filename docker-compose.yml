@@ -19,6 +19,8 @@ services:
   alertmanager:
     image: prom/alertmanager
     container_name: prometheus-alertmanager
+    ports:
+      - 9093:9093
     depends_on:
       - "prometheus-server"
     volumes:
@@ -29,8 +31,7 @@ services:
     command:
       - --config.file=/etc/alertmanager/config.yml
       - --storage.path=/alertmanager  
-    ports:
-      - 9093:9093
+   
 
   grafana-ui:
     image: grafana/grafana
