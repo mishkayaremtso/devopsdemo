@@ -13,7 +13,7 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
-  - job_name: 'nodeexporter'
+  - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
       - targets: ['3.21.186.27:9100']
