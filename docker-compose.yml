@@ -59,7 +59,7 @@ services:
     command: -config.file=/config/blackbox.yml
 
 
-  telegram-bot:
+  prometheus-alertmanager_bot:
     container_name: prometheus-alertmanager_bot
     image: metalmatze/alertmanager-bot:0.4.0
     environment:
