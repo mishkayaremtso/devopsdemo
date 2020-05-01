@@ -8,7 +8,6 @@ services:
     ports:
       - 9090:9090
     links:
-      - alertmanager:alertmanager
       - blackbox_exporter
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
