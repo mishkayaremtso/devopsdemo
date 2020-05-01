@@ -10,4 +10,4 @@ receivers:
 - name: alertmananger-bot
   webhook_configs:
   - send_resolved: true
-   - url: 'http://prometheus-alertmanager_bot:8080'
+  - url: 'http://prometheus-alertmanager_bot:8080'
