@@ -60,7 +60,7 @@ services:
 
 
   telegram-bot:
-    container_name: prometheus-alertmanger_bot
+    container_name: prometheus-alertmanager_bot
     image: metalmatze/alertmanager-bot:0.4.0
     environment:
       ALERTMANAGER_URL: http://prometheus-alertmanager:9093
