@@ -31,11 +31,9 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=secret
     links:
       - prometheus-server:prometheus
-<<<<<<< HEAD
     volumes:
-      - ./grafana-alertmanager/:/var/lib/grafana/plugins
-=======
->>>>>>> 8745d2e857164efe8467c7c144544038d5d26f6e
+      - ./camptocamp-prometheus-alertmanager-datasource:/var/lib/grafana/plugins/
+
 
   blackbox_exporter:
     image: prom/blackbox-exporter
