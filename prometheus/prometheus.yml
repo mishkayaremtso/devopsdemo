@@ -30,7 +30,7 @@ scrape_configs:
     params:
       module: [icmp_ipv4]
     static_configs:
-      - targets: ['3.21.186.27']
+      - targets: ['8.8.8.8']
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
