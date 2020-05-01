@@ -66,7 +66,7 @@ services:
       ALERTMANAGER_URL: http://prometheus-alertmanager:9093
       BOLT_PATH: /data/bot.db
       STORE: bolt
-      TELEGRAM_ADMIN: 12341234
+      TELEGRAM_ADMIN: 867984336
       TELEGRAM_TOKEN: 1125688224:AAF1zcT5T7BQzeUx7ZcCdPfuL55ZiJDK284
       TEMPLATE_PATHS: /templates/default.tmpl
       LISTEN_ADDR: 0.0.0.0:8080
