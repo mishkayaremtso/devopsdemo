@@ -8,7 +8,7 @@ route:
   receiver: 'null'
 
   routes:
-  - receiver: 'alertmananger-bot'
+  - receiver: 'alertmanager-bot'
     repeat_interval: 60s
 
 receivers:
@@ -22,7 +22,7 @@ receivers:
     auth_identity: "team3crashcourse@gmail.com"
     auth_password: "prometheus22"
 
-- name: 'alertmananger-bot'
+- name: 'alertmanager-bot'
   webhook_configs:
   - url: 'http://alertmanager-bot:8080'
 
