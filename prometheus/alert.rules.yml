@@ -39,3 +39,13 @@ groups:
     labels:
       severity:
     annotations:
+
+- name: UpDown
+  rules:
+
+  - alert: InstanceDown
+    expr: up{} == 0
+    for: 1s
+    labels:
+      severity:
+    annotations:
