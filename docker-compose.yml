@@ -25,8 +25,8 @@ services:
 #      - "prometheus-server"
     volumes:
       - ./alertmanager/:/etc/alertmanager/
-    networks:
-      - prometheus-network
+#    networks:
+#      - prometheus-network
     restart: always
     command:
       - --config.file=/etc/alertmanager/config.yml
