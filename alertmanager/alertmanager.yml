@@ -22,9 +22,6 @@ receivers:
     auth_identity: "team3crashcourse@gmail.com"
     auth_password: "prometheus22"
 
-- name: alertmananger-bot
-  webhook_configs:
-    url: 'http://prometheus-alertmanager_bot:8080'
 
 - name: "null"
 - name: regular_alert_receiver
