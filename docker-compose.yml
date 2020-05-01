@@ -32,11 +32,14 @@ services:
     links:
       - prometheus-server:prometheus
 
-  blackbox-exporter:
-    image: prom/blackbox-exporter:master
-    volumes:
-    - ./prometheus/blackbox.yml:/etc/blackbox_exporter/ 
-    expose:
-    - 9115
+  blackbox_exporter:
+    image: prom/blackbox-exporter
     ports:
-    - 9115:9115
+      - "9115:9115"
+    dns: 8.8.8.8
+    restart: always
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./prometheus/blackbox.yml:/config"
+    command: -config.file=/config/blackbox.yml
