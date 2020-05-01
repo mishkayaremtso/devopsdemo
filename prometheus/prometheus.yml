@@ -44,4 +44,4 @@ alerting:
   - scheme: http
     static_configs:
     - targets:
-      - 'alertmanager:9093'
+      - 'prometheus-alertmanager:9093'
