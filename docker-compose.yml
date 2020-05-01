@@ -44,3 +44,15 @@ services:
     volumes:
       - "./prometheus/blackbox.yml:/config"
     command: -config.file=/config/blackbox.yml
+    
+  alertmanager-bot:
+    image: metalmatze/alertmanager-bot:0.4.2
+    environment:
+      ALERTMANAGER_URL: http://alertmanager:9093
+      BOLT_PATH: /data/bot.db
+      STORE: bolt
+      TELEGRAM_ADMIN: '1234567'
+      TELEGRAM_TOKEN: 1206294097:AAEdYbh1HBZIrCYKGJF0dpZG8moEsr67Dcs
+      TEMPLATE_PATHS: /templates/default.tmpl
+    volumes:
+      - /srv/monitoring/alertmanager-bot:/data
