@@ -68,4 +68,10 @@ services:
     volumes:
       - ./prometheus:/data
       - ./prometheus/telegram.tmpl:/templates/default.tmpl
+    networks:
+      - prometheus-network
     restart: always
+  
+  
+  networks:
+  prometheus-network:
