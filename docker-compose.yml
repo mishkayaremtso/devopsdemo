@@ -22,7 +22,7 @@ services:
     depends_on:
       - "prometheus-server"
     ports:
-      - 127.0.0.1:9093:9093
+      - 9093:9093
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     networks:
