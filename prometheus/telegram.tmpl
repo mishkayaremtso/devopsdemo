@@ -3,7 +3,7 @@
 {{ if eq .Status "firing"}}🔥 <b>{{ .Status | toUpper }}</b> 🔥{{ else }}<b>{{ .Status | toUpper }}</b>{{ end }}
 <b>{{ .Labels.alertname }}</b>
 {{ if eq .Status "firing"}}<b>{{ .Annotations.description }} DOWN</b>{{ else }}<b>{{ .Annotations.description }} UP</b>{{ end }}
-<b>All alerts:</b>https://35.230.82.224:3000//d/WojOgXTmk/prometheus-alertmanager?orgId=1
+<b>All alerts:</b>https://35.230.82.224:3000
 <b>Start:</b> {{ .StartsAt | since }} ago
 {{ if ne .Status "firing"}}<b>Ended:</b> {{ .EndsAt | since }} ago{{ end }}
 {{ end }}
