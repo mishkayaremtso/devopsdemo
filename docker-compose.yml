@@ -1,27 +1,35 @@
-
 version: '3'
 
 services:
-
-  alertmanager:
-    image: prom/alertmanager
-    volumes:
-      - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
-    command:
-      - '--config.file=/etc/prometheus/alertmanager.yml'
-    ports:
-      - 9093:9093
 
   prometheus-server:
     image: prom/prometheus
     ports:
       - 9090:9090
     links:
-      - alertmanager:alertmanager
       - blackbox_exporter
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    networks:
+      - prometheus-network
+
+
+  prometheus-alertmanager:
+    image: prom/alertmanager
+    container_name: prometheus-alertmanager
+    depends_on:
+      - prometheus-server
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
+    command:
+      - '--config.file=/etc/prometheus/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+    ports:
+      - 9093:9093
+    networks:
+      - prometheus-network
+
 
   grafana-ui:
     image: grafana/grafana
@@ -31,6 +39,8 @@ services:
       - prometheus-server:prometheus
     volumes:
       - ./camptocamp-prometheus-alertmanager-datasource:/var/lib/grafana/plugins/
+    networks:
+      - prometheus-network
 
 
   blackbox_exporter:
@@ -43,4 +53,28 @@ services:
       - "9115:9115"
     volumes:
       - "./prometheus/blackbox.yml:/config"
+    networks:
+      - prometheus-network
     command: -config.file=/config/blackbox.yml
+
+
+  prometheus-alertmanager_bot:
+    container_name: prometheus-alertmanager_bot
+    image: metalmatze/alertmanager-bot:0.4.0
+    environment:
+      ALERTMANAGER_URL: http://prometheus-alertmanager:9093
+      BOLT_PATH: /data/bot.db
+      STORE: bolt
+      TELEGRAM_ADMIN: 867984336
+      TELEGRAM_TOKEN: 1125688224:AAF1zcT5T7BQzeUx7ZcCdPfuL55ZiJDK284
+      TEMPLATE_PATHS: /templates/default.tmpl
+      LISTEN_ADDR: 0.0.0.0:8080
+    volumes:
+      - ./prometheus:/data
+      - ./prometheus/telegram.tmpl:/templates/default.tmpl
+    networks:
+      - prometheus-network
+    restart: always
+
+networks:
+  prometheus-network:
