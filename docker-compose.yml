@@ -13,8 +13,13 @@ services:
       - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
     networks:
       - prometheus-network
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 3f00bf3679597a57b4375a4f74afb7582ad0c900
   prometheus-alertmanager:
     image: prom/alertmanager
     container_name: prometheus-alertmanager
@@ -26,10 +31,17 @@ services:
       - '--config.file=/etc/prometheus/alertmanager.yml'
       - '--storage.path=/alertmanager'
     ports:
+<<<<<<< HEAD
       - 9093:9093
     networks:
       - prometheus-network
 
+=======
+      - 9093:9093
+    networks:
+      - prometheus-network
+
+>>>>>>> 3f00bf3679597a57b4375a4f74afb7582ad0c900
 
   grafana-ui:
     image: grafana/grafana
@@ -75,6 +87,3 @@ services:
     networks:
       - prometheus-network
     restart: always
-
-networks:
-  prometheus-network:

@@ -1,30 +1,13 @@
-#global:
-
 route:
-  group_by: ['alertname', 'job']
+  receiver: 'alertmananger-bot'
   group_wait: 30s
-  group_interval: 60s
-  repeat_interval: 1h
-  receiver: 'null'
-
-  routes:
-  - receiver: email-me
-    repeat_interval: 1h
-    match_re:
-      job: node_exporter
+  group_interval: 30s
+  repeat_interval: 5h
+  group_by: ['instance']
 
 receivers:
 
-- name: email-me
-  email_configs:
-  - to: vasulrgdevera@gmail.com
-    require_tls: false
-    from: team3crashcourse@gmail.com
-    smarthost: smtp.gmail.com:465
-    auth_username: "team3crashcourse"
-    auth_identity: "team3crashcourse"
-    auth_password: "prometheus22"
-
-- name: "null"
-- name: regular_alert_receiver
-    <snip>
+- name: alertmananger-bot
+  webhook_configs:
+  - send_resolved: true
+    url: 'http://prometheus-alertmanager_bot:8080'
