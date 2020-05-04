@@ -12,6 +12,8 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
     networks:
+      - prometheus-network
+
 
   prometheus-alertmanager:
     image: prom/alertmanager
@@ -73,3 +75,6 @@ services:
     networks:
       - prometheus-network
     restart: always
+
+networks:
+  prometheus-network:
