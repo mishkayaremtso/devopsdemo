@@ -10,9 +10,7 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  metadata = {
-    ssh-keys = "mykle1488:${file("~/.ssh/id_rsa.pub")}"
-  }
+ 
 
 
   network_interface {
@@ -33,10 +31,7 @@ resource "google_compute_instance" "default1" {
     }
   }
 
-  metadata = {
-    ssh-keys = "mykle1488:${file("~/.ssh/id_rsa.pub")}"
-
-  }
+  
   metadata_startup_script = "sudo apt update && sudo apt install -y openjdk-8-jre && sudo ufw allow 8080 && sudo ufw allow ssh && sudo ufw allow http && sudo ufw enable && sudo apt install -y docker.io && sudo docker pull jenkins/jenkins && sudo docker run -p 8080:8080 --name=jenkins-master -d jenkins/jenkins"
 
   network_interface {
@@ -58,9 +53,7 @@ resource "google_compute_instance" "default2" {
     }
   }
 
-  metadata = {
-    ssh-keys = "mykle1488:${file("~/.ssh/id_rsa.pub")}"
-  }
+ 
 
 
   network_interface {
