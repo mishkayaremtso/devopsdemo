@@ -43,21 +43,6 @@ services:
       - prometheus-network
 
 
-  blackbox_exporter:
-    image: prom/blackbox-exporter
-    ports:
-      - "9115:9115"
-    dns: 8.8.8.8
-    restart: always
-    ports:
-      - "9115:9115"
-    volumes:
-      - "./prometheus/blackbox.yml:/config"
-    networks:
-      - prometheus-network
-    command: -config.file=/config/blackbox.yml
-
-
   prometheus-alertmanager_bot:
     container_name: prometheus-alertmanager_bot
     image: metalmatze/alertmanager-bot:0.4.0
