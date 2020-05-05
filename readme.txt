@@ -20,7 +20,7 @@ nano authorized_keys
 #paste your key
 save
 
-
+hello crashcourse
 go to master instance
 ssh "ip of second instance"
  
