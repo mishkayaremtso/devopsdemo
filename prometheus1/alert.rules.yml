@@ -1,0 +1,41 @@
+groups:
+
+- name: CPU_load
+  rules:
+
+  - alert: High cpu load 85 percent
+    expr: 100 - (avg(irate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[30m])) * 100) > 85.0
+    for: 1s
+    labels:
+      severity:
+    annotations:
+
+- name: Used_Memory
+  rules:
+
+  - alert: High memory used 85 percent
+    expr: (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / (node_memory_MemTotal_bytes{instance=~"$node"})))* 100 > 85
+    for: 1s
+    labels:
+      severity:
+    annotations:
+
+- name: Used_Max_Mount
+  rules:
+
+  - alert: Max_Mount
+    expr: 100 - ((node_filesystem_avail_bytes{instance=~"$node",mountpoint="$maxmount",fstype=~"ext4|xfs"} * 100) / node_filesystem_size_bytes {instance=~"$node",mountpoint="$maxmount",fstype=~"ext4|xfs"}) > 60
+    for: 1s
+    labels:
+      severity:
+    annotations:
+
+- name: Used_Max_Swap
+  rules:
+
+  - alert: Max_Swap
+    expr: (1 - (node_memory_SwapFree_bytes{instance=~"$node"} / node_memory_SwapTotal_bytes{instance=~"$node"})) * 100 > 2000
+    for: 1s
+    labels:
+      severity:
+    annotations:

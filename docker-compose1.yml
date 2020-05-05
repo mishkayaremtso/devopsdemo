@@ -1,0 +1,32 @@
+
+version: '3'
+
+services:
+
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/prometheus/alertmanager.yml
+    command:
+      - '--config.file=/etc/prometheus/alertmanager.yml'
+    ports:
+      - 9093:9093
+
+  prometheus-server:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    links:
+      - alertmanager:alertmanager
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+
+  grafana-ui:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    links:
+      - prometheus-server:prometheus

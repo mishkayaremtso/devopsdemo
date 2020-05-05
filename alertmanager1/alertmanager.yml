@@ -1,0 +1,30 @@
+#global:
+
+route:
+  group_by: ['alertname', 'job']
+  group_wait: 30s
+  group_interval: 60s
+  repeat_interval: 1h
+  receiver: 'null'
+
+  routes:
+  - receiver: email-me
+    repeat_interval: 1h
+    match_re:
+      job: node_exporter
+
+receivers:
+
+- name: email-me
+  email_configs:
+  - to: tchynetsky@gmail.com
+    require_tls: false
+    from: tchynetsky@gmail.com
+    smarthost: smtp.gmail.com:465
+    auth_username: "Naker22"
+    auth_identity: "Steve"
+    auth_password: "agelis06"
+
+- name: "null"
+- name: regular_alert_receiver
+    <snip>
