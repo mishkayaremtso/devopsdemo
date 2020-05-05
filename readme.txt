@@ -5,7 +5,7 @@ terraform apply
 #enable creating instaces in your gcp 
 terraform apply
 
-hello softserve
+
 ssh connection
 
 in master instance
