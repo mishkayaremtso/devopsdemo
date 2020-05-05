@@ -14,10 +14,10 @@ groups:
   rules:
 
   - alert: High memory used 85 percent
-    expr: (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / (node_memory_MemTotal_bytes{instance=~"$node"})))* 100 > 85
+    expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 15
     for: 1s
     labels:
-      severity:
+      severity: warning
     annotations:
 
 - name: Used_Max_Mount
