@@ -11,14 +11,14 @@
 # KDE directory preferences
 .directory
 
-# Linux trash folder which might appear on any partition or disk
+# Linux trash folder which   might appear on any partition or disk
 .Trash-*
 
-# .nfs files are created when an open file is removed but is still being accessed
+# .nfs files are created   when an open file is removed but is still being accessed
 .nfs*
 
 ### Terraform ###
-# Local .terraform directories
+# Local .terraform   directories
 **/.terraform/*
 
 # .tfstate files
