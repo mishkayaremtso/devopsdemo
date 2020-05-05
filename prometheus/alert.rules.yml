@@ -4,7 +4,7 @@ groups:
   rules:
 
   - alert: High cpu load 85 percent
-    expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 1
+    expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
     for: 1s
     labels:
       severity: warning
